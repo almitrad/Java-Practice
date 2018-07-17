@@ -1,2 +1,2 @@
 # Java-Practice
-A collection of coding problems I've attempted from LeetCode just for fun and for some self-learning!
+A collection of coding problems (from LeetCode) I've attempted just for fun and for some self-learning!
