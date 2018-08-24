@@ -38,20 +38,44 @@ Output: false
  *     TreeNode right;
  *     TreeNode(int x) { val = x; }
  * }
-
  */
- 
+
 class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
         
-        if (p == null && q == null){
-            return true; 
-        }
-        else if (p == null || q == null){
+        List<Integer>pValue = new ArrayList<>();
+        List<Integer>qValue = new ArrayList<>();
+        
+        helper1(p, pValue);
+        helper2(q, qValue);
+        
+        if (pValue.size() != qValue.size()){
             return false;
         }
         else{
-            return p.val == q.val && isSameTree(p.right, q.right) && isSameTree(p.left, q.left);
+            for (int i = 0; i < pValue.size(); i++){
+                if (pValue.get(i) != qValue.get(i)){
+                    return false;
+                }
+            }
+        }
+        return true;
+        
+    }
+    
+    public void helper1(TreeNode root, List<Integer>pValue){
+        if (root != null){
+            helper1(root.left, pValue);
+            pValue.add(root.val);
+            helper1(root.right, pValue);
+        }
+    }
+    
+    public void helper2(TreeNode root, List<Integer>qValue){
+        if (root!= null){
+            helper2(root.left, qValue);
+            qValue.add(root.val);
+            helper2(root.right, qValue);
         }
     }
 }
